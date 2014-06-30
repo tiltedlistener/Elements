@@ -1,0 +1,15 @@
+/**
+ *  Multi-Or gate
+ *  4-bit in this case
+ */
+
+CHIP MultiOr {
+
+    IN a, b, c, d;
+    OUT out;
+
+    PARTS:
+    Or(a=a,b=b,out=first);
+    Or(a=c,b=d,out=second);
+    Or(a=first,b=second,out=out); 
+}

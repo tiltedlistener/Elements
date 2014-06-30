@@ -1,0 +1,26 @@
+/**
+ *  Demultiplexor 4-way gate
+ */
+
+CHIP Demultiplexor4way {
+
+    IN in, s1, s2;
+    OUT a, b, c, d;
+
+    PARTS:
+    // Set up switch set
+    Not(in=s1, out=nots1);
+    Not(in=s2, out=nots2);
+
+    // Grouped formulas
+    And(a=s1,b=s2,out=both);
+    And(a=s1,b=nots2,out=halfa);
+    And(a=nots1,b=s2,out=halfb);
+    And(a=nots1,b=nots2,out=notboth);
+
+   	// Outputs
+    And(a=in,b=both,out=d);
+    And(a=in,b=notboth,out=a);
+    And(a=in,b=halfa,out=c);
+    And(a=in,b=halfb,out=b);
+}

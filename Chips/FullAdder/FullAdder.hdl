@@ -1,0 +1,14 @@
+/**
+ *  Full Adder
+ */
+
+CHIP FullAdder {
+
+    IN a, b, c;
+    OUT sum, over;
+
+    PARTS:
+    HalfAdder(a=a,b=b,sum=sum1,carry=car1);
+    HalfAdder(a=sum1,b=c,sum=sum,carry=car2);
+    Or(a=car1,b=car2,out=over);
+}
